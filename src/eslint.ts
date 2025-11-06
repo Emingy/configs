@@ -3,9 +3,10 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
+import type { Config } from '@eslint/config-helpers';
 import eslint from '@eslint/js';
 
-const config = defineConfig(eslint.configs.recommended, tseslint.configs.recommended, {
+const config: Config[] = defineConfig(eslint.configs.recommended, tseslint.configs.recommended, {
     plugins: {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

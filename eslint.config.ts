@@ -1,4 +1,4 @@
-import { BaseEslintConfig } from '@emingy/configs';
+import { BaseEslintConfig } from './lib';
 
 export default [
     ...BaseEslintConfig,

@@ -1,5 +1,6 @@
-import BaseEslintConfig from './eslint.js';
-import BasePrettierConfig from './prettier.js';
-import BaseStylelintConfig from './stylelint.js';
+import BaseCommitlintConfig from './commitlint';
+import BaseEslintConfig from './eslint';
+import BasePrettierConfig from './prettier';
+import BaseStylelintConfig from './stylelint';
 
-export { BaseEslintConfig, BasePrettierConfig, BaseStylelintConfig };
+export { BaseCommitlintConfig, BaseEslintConfig, BasePrettierConfig, BaseStylelintConfig };
