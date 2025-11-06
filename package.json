@@ -1,0 +1,84 @@
+{
+    "name": "@emingy/configs",
+    "version": "0.0.3",
+    "description": "Common configs (ESLint, Prettier, Stylelint, TypeScript).",
+    "type": "module",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "prepare": "husky",
+        "postinstall": "pnpm build",
+        "build": "tsc && cp ./src/tsconfig.json ./lib/tsconfig.json",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "format": "prettier --check '**/*.{ts,tsx,js,jsx,json,css,md}'",
+        "format:fix": "prettier --write '**/*.{ts,tsx,js,jsx,json,css,md}'",
+        "precommit": "pnpm coverage:ts && pnpm build && pnpx lint-staged",
+        "coverage:ts": "type-coverage"
+    },
+    "lint-staged": {
+        "*.{ts,js}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,md}": [
+            "prettier --write"
+        ]
+    },
+    "keywords": [
+        "eslint",
+        "prettier",
+        "stylelint",
+        "config",
+        "tsconfig"
+    ],
+    "typeCoverage": {
+        "atLeast": 100,
+        "detail": true
+    },
+    "exports": {
+        ".": {
+            "import": "./lib/index.js",
+            "require": "./lib/index.js",
+            "types": "./lib/index.d.ts"
+        },
+        "./tsconfig": "./lib/tsconfig.json"
+    },
+    "author": "Emingy",
+    "license": "ISC",
+    "devDependencies": {
+        "@commitlint/cli": "20.1.0",
+        "@commitlint/config-conventional": "20.0.0",
+        "@eslint/js": "9.39.1",
+        "@typescript-eslint/parser": "8.46.3",
+        "eslint": "9.37.0",
+        "eslint-plugin-simple-import-sort": "12.1.1",
+        "globals": "16.5.0",
+        "husky": "9.1.7",
+        "prettier": "3.6.2",
+        "stylelint": "16.25.0",
+        "stylelint-config-css-modules": "4.5.1",
+        "stylelint-config-standard": "39.0.1",
+        "stylelint-order": "7.0.0",
+        "stylelint-scss": "6.12.1",
+        "type-coverage": "2.29.7",
+        "typescript": "5.9.3",
+        "typescript-eslint": "8.46.3"
+    },
+    "peerDependencies": {
+        "@eslint/js": "9.39.1",
+        "@typescript-eslint/parser": "8.46.3",
+        "eslint": "9.37.0",
+        "eslint-plugin-simple-import-sort": "12.1.1",
+        "globals": "16.5.0",
+        "prettier": "3.6.2",
+        "stylelint": "16.25.0",
+        "stylelint-config-css-modules": "4.5.1",
+        "stylelint-config-standard": "39.0.1",
+        "stylelint-order": "7.0.0",
+        "stylelint-scss": "6.12.1",
+        "typescript": "5.9.3",
+        "typescript-eslint": "8.46.3"
+    }
+}

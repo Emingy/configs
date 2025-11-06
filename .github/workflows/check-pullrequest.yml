@@ -1,0 +1,40 @@
+name: CI Checks
+
+on:
+    pull_request:
+        branches: [master]
+
+jobs:
+    checks:
+        name: 🔍 Static Analysis & Code Quality
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Prepare
+              uses: ./.github/actions/prepare-project/
+
+            - name: Check linting
+              run: pnpm lint
+
+            - name: Check format
+              run: pnpm format
+
+            - name: Ts coverage
+              run: pnpm coverage:ts
+
+    build:
+        name: 🏗️ Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Prepare
+              uses: ./.github/actions/prepare-project/
+
+            - name: Check packages build
+              run: pnpm build
