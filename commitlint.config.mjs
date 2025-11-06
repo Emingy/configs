@@ -1,3 +1,5 @@
+import { BaseCommitlintConfig } from './lib/index.js';
+
 export default {
-    extends: ['@commitlint/config-conventional'],
+    ...BaseCommitlintConfig,
 };
