@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "lib": ["dom", "dom.iterable", "esnext", "es2024"],
+        "checkJs": false,
+        "experimentalDecorators": true,
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "noEmitOnError": true,
+        "noImplicitReturns": false,
+        "removeComments": false,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true
+    }
+}

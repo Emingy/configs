@@ -1,0 +1,56 @@
+export default {
+    extends: ['stylelint-config-standard', 'stylelint-config-css-modules'],
+    plugins: ['stylelint-order', 'stylelint-scss'],
+    defaultSeverity: 'error',
+    rules: {
+        'media-feature-range-notation': 'prefix',
+        'scss/at-mixin-argumentless-call-parentheses': 'never',
+        'custom-property-empty-line-before': null,
+        'custom-media-pattern': null,
+        'custom-property-pattern': null,
+        'no-duplicate-selectors': null,
+        'no-descending-specificity': null,
+        'property-no-vendor-prefix': null,
+        'import-notation': 'string',
+        'color-hex-length': null,
+        'no-invalid-position-at-import-rule': null,
+        'color-function-notation': null,
+        'declaration-block-no-redundant-longhand-properties': null,
+        'declaration-property-value-no-unknown': null,
+        'declaration-empty-line-before': null,
+        'order/order': [
+            [
+                { type: 'at-rule', name: 'import' },
+                { type: 'at-rule', name: 'forward' },
+                { type: 'at-rule', name: 'use' },
+                'dollar-variables',
+                'at-variables',
+                'custom-properties',
+                { type: 'at-rule', name: 'custom-media' },
+                { type: 'at-rule', name: 'function' },
+                { type: 'at-rule', name: 'mixin' },
+                { type: 'at-rule', name: 'extend' },
+                { type: 'at-rule', name: 'include', hasBlock: true },
+                'declarations',
+                {
+                    type: 'rule',
+                    selector: /^&::[\w-]+/,
+                    hasBlock: true,
+                },
+                'rules',
+                { type: 'at-rule', name: 'media', hasBlock: true },
+                { type: 'at-rule', name: 'include', hasBlock: true },
+            ],
+            {
+                severity: 'warning',
+            },
+        ],
+        'selector-class-pattern': [
+            '^[A-Za-z]*(?:__[a-z]+(?:-[a-z]+)*)?(?:--[a-z]+(?:-[a-z]+)*)?$',
+            {
+                message: (selector: string) =>
+                    `Expected class selector "${selector}" to be camelCase`,
+            },
+        ],
+    },
+};

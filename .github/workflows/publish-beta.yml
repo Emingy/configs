@@ -1,0 +1,39 @@
+name: Manual Beta Publish
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    packages: write
+    id-token: write
+
+jobs:
+    publish-beta:
+        name: 🧪 Publish Beta
+        runs-on: ubuntu-latest
+
+        if: github.ref_name != 'master'
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Prepare
+              uses: ./.github/actions/prepare-project/
+
+            - name: Build
+              run: pnpm run build
+
+            # Version: X.Y.Z-beta.<run_id>.N (example: 1.0.0-beta.123456789.0)
+            - name: Bump to beta version
+              run: |
+                  CURRENT_VERSION=$(node -p "require('./package.json').version")
+
+                  pnpm exec -- npm version "${CURRENT_VERSION}-beta-${{ github.run_id }}" --no-git-tag-version
+
+            - name: Publish Beta to npm
+              run: pnpm publish --tag beta --access public --no-git-checks
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
