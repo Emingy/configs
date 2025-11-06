@@ -1,0 +1,26 @@
+name: Release
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Prepare
+              uses: ./.github/actions/prepare-project/
+
+            - name: Build
+              run: pnpm run build
+
+            - name: Run Semantic Release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: npx semantic-release
