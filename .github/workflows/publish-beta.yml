@@ -4,32 +4,39 @@ on:
     workflow_dispatch:
 
 permissions:
-    contents: write
-    packages: write
-    id-token: write
+    contents: read # for checkout
 
 jobs:
-    publish-beta:
+    release:
         name: 🧪 Publish Beta
         runs-on: ubuntu-latest
-
-        if: github.ref_name != 'master'
-
+        permissions:
+            contents: write # to be able to publish a GitHub release
+            issues: write # to be able to comment on released issues
+            pull-requests: write # to be able to comment on released pull requests
+            id-token: write # to enable use of OIDC for trusted publishing and npm provenance
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
               with:
                   fetch-depth: 0
+
             - name: Prepare
               uses: ./.github/actions/prepare-project/
 
             - name: Build
               run: pnpm run build
 
+            - name: 'Get Previous tag'
+              id: previoustag
+              uses: 'WyriHaximus/github-action-get-previous-tag@v1'
+              with:
+                  fallback: 1.0.0
+
             # Version: X.Y.Z-beta.<run_id>.N (example: 1.0.0-beta.123456789.0)
             - name: Bump to beta version
               run: |
-                  CURRENT_VERSION=$(node -p "require('./package.json').version")
+                  CURRENT_VERSION=$(echo "${{ steps.previoustag.outputs.tag }}" | sed 's/^v//')
 
                   pnpm exec -- npm version "${CURRENT_VERSION}-beta-${{ github.run_id }}" --no-git-tag-version
 
