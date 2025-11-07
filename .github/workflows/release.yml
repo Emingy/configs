@@ -28,8 +28,13 @@ jobs:
             - name: Build
               run: pnpm run build
 
+            - name: Configure npm
+              run: |
+                  echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\n@emingy:https://registry.npmjs.org/' > .npmrc
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
             - name: Run Semantic Release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: npx semantic-release
