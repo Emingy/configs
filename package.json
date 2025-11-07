@@ -92,6 +92,8 @@
         "url": "git+https://github.com/Emingy/configs.git"
     },
     "publishConfig": {
-        "registry": "https://registry.npmjs.org/"
+        "registry": "https://registry.npmjs.org/",
+        "access": "public",
+        "provenance": true
     }
 }
