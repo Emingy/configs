@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Logo" src="asset/logo.svg" width=100/>
+    <img alt="Logo" src="assets/logo.svg" width=100/>
 </p>
 <h1 align="center" style="border-bottom: none; margin-top: -8px;">@emingy/configs</h1>
 <h6 align="center">A shared configuration package for consistent code quality and formatting across projects.  
