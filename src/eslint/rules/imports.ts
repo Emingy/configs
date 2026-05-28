@@ -1,16 +1,12 @@
 import { defineConfig } from 'eslint/config';
+import importPlugin from 'eslint-plugin-import-x';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import { type FlatConfig } from 'typescript-eslint';
 
-import type { Config } from '@eslint/config-helpers';
-import eslint from '@eslint/js';
-
-const config: Config[] = defineConfig(eslint.configs.recommended, tseslint.configs.recommended, {
+export default defineConfig({
     plugins: {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        'simple-import-sort': simpleImportSort,
+        'simple-import-sort': simpleImportSort as unknown as FlatConfig.Plugin,
+        import: importPlugin as unknown as FlatConfig.Plugin,
     },
     rules: {
         'simple-import-sort/imports': [
@@ -26,15 +22,7 @@ const config: Config[] = defineConfig(eslint.configs.recommended, tseslint.confi
             },
         ],
         'simple-import-sort/exports': 'error',
-
         'sort-imports': 'off',
-    },
-    languageOptions: {
-        globals: {
-            ...globals.browser,
-            ...globals.node,
-        },
+        'import/no-duplicates': 'error',
     },
 });
-
-export default config;
