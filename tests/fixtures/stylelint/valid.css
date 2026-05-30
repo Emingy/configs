@@ -1,0 +1,11 @@
+.MyComponent {
+    color: red;
+}
+
+.MyComponent__title {
+    font-size: 16px;
+}
+
+.MyComponent__title--active {
+    font-weight: bold;
+}

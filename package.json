@@ -13,8 +13,9 @@
         "lint:fix": "eslint --fix",
         "format": "prettier --check '**/*.{ts,tsx,js,jsx,json,css,md}'",
         "format:fix": "prettier --write '**/*.{ts,tsx,js,jsx,json,css,md}'",
-        "precommit": "pnpm coverage:ts && pnpm build && pnpx lint-staged",
-        "coverage:ts": "type-coverage"
+        "precommit": "pnpm coverage:ts && pnpm build && pnpm test && pnpx lint-staged",
+        "coverage:ts": "type-coverage",
+        "test": "rstest run"
     },
     "lint-staged": {
         "*.{ts,js}": [
@@ -49,8 +50,11 @@
     "devDependencies": {
         "@commitlint/cli": "20.1.0",
         "@commitlint/config-conventional": "20.0.0",
+        "@commitlint/lint": "21.0.2",
+        "@commitlint/types": "21.0.1",
         "@eslint/config-helpers": "0.4.2",
         "@eslint/js": "9.39.1",
+        "@rstest/core": "0.10.3",
         "@semantic-release/git": "10.0.1",
         "@semantic-release/github": "12.0.1",
         "@semantic-release/npm": "13.1.1",

@@ -3,6 +3,6 @@ import { BaseEslintConfig } from './lib';
 export default [
     ...BaseEslintConfig,
     {
-        ignores: ['lib/', 'node_modules/'],
+        ignores: ['lib/', 'node_modules/', 'tests/fixtures/'],
     },
 ];
