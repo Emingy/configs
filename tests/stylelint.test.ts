@@ -28,4 +28,19 @@ describe('Stylelint config', () => {
         expect(selectorError).toBeDefined();
         expect(selectorError?.severity).toBe('error');
     });
+
+    describe('properties order', () => {
+        it('passes when properties follow group order', async () => {
+            const warnings = await lint(path.join(fixturesDir, 'properties-ordered.css'));
+            const orderWarnings = warnings.filter((w) => w.rule === 'order/properties-order');
+            expect(orderWarnings).toHaveLength(0);
+        });
+
+        it('warns when properties violate group order', async () => {
+            const warnings = await lint(path.join(fixturesDir, 'properties-unordered.css'));
+            const orderWarning = warnings.find((w) => w.rule === 'order/properties-order');
+            expect(orderWarning).toBeDefined();
+            expect(orderWarning?.severity).toBe('warning');
+        });
+    });
 });

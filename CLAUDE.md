@@ -37,8 +37,9 @@ When adding a new ESLint rule set, create a file in `src/eslint/rules/`, import 
 ## Adding / changing rules
 
 1. Edit the relevant file in `src/`.
-2. Run `pnpm build` — the compiled output in `lib/` must be updated.
-3. The pre-commit hook will run `coverage:ts`, `build`, and `lint-staged` automatically.
+2. **Add or update integration tests** in `tests/` — every new rule must have at least one test that verifies it fires, and one that verifies the fix (if the rule is auto-fixable). Tests live in `tests/<tool>.test.ts`; fixtures go in `tests/fixtures/<tool>/`.
+3. Run `pnpm build` — the compiled output in `lib/` must be updated.
+4. The pre-commit hook will run `coverage:ts`, `build`, `test`, and `lint-staged` automatically.
 
 ## CI / Release
 
