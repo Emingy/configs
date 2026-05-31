@@ -16,17 +16,26 @@ async function lint(filePath: string) {
 }
 
 describe('Stylelint config', () => {
-    it('passes on valid BEM selectors', async () => {
-        const warnings = await lint(path.join(fixturesDir, 'valid.css'));
-        const selectorWarnings = warnings.filter((w) => w.rule === 'selector-class-pattern');
-        expect(selectorWarnings).toHaveLength(0);
-    });
+    describe('selector-class-pattern', () => {
+        it('passes on valid BEM selectors (block, element, underscore-modifier)', async () => {
+            const warnings = await lint(path.join(fixturesDir, 'valid.css'));
+            const selectorWarnings = warnings.filter((w) => w.rule === 'selector-class-pattern');
+            expect(selectorWarnings).toHaveLength(0);
+        });
 
-    it('reports error for kebab-case selector', async () => {
-        const warnings = await lint(path.join(fixturesDir, 'invalid-selector.css'));
-        const selectorError = warnings.find((w) => w.rule === 'selector-class-pattern');
-        expect(selectorError).toBeDefined();
-        expect(selectorError?.severity).toBe('error');
+        it('reports error for kebab-case selector', async () => {
+            const warnings = await lint(path.join(fixturesDir, 'invalid-selector.css'));
+            const selectorError = warnings.find((w) => w.rule === 'selector-class-pattern');
+            expect(selectorError).toBeDefined();
+            expect(selectorError?.severity).toBe('error');
+        });
+
+        it('reports error for double-dash modifier (use single underscore instead)', async () => {
+            const warnings = await lint(path.join(fixturesDir, 'invalid-selector-double-dash.css'));
+            const selectorError = warnings.find((w) => w.rule === 'selector-class-pattern');
+            expect(selectorError).toBeDefined();
+            expect(selectorError?.severity).toBe('error');
+        });
     });
 
     describe('properties order', () => {

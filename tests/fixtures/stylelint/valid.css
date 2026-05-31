@@ -6,6 +6,14 @@
     font-size: 16px;
 }
 
-.MyComponent__title--active {
+.MyComponent__title_active {
     font-weight: bold;
+}
+
+.MyComponent_active {
+    opacity: 0.5;
+}
+
+.MyComponent__item_dark-mode {
+    background: #000;
 }

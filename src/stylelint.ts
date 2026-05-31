@@ -187,10 +187,10 @@ export default {
             },
         ],
         'selector-class-pattern': [
-            '^[A-Za-z]*(?:__[a-z]+(?:-[a-z]+)*)?(?:--[a-z]+(?:-[a-z]+)*)?$',
+            '^[A-Z][A-Za-z0-9]*(?:__[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?(?:_[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?$',
             {
                 message: (selector: string) =>
-                    `Expected class selector "${selector}" to be camelCase`,
+                    `Expected class selector "${selector}" to follow BEM: Block__element_modifier`,
             },
         ],
     },
