@@ -18,6 +18,7 @@ const config: Config[] = defineConfig(
                 ...globals.node,
             },
         },
+        ignores: ['lib/', 'node_modules/', 'tests/fixtures/'],
     }
 );
 
