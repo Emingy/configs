@@ -1,6 +1,6 @@
 {
     "name": "@emingy/configs",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Common configs (ESLint, Prettier, Stylelint, TypeScript).",
     "files": [
         "lib"
