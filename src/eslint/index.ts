@@ -8,6 +8,9 @@ import eslint from '@eslint/js';
 import importsRules from './rules/imports';
 
 const config: Config[] = defineConfig(
+    {
+        ignores: ['storybook-static', 'dist', 'node_modules', 'lib', 'coverage'],
+    },
     eslint.configs.recommended,
     tseslint.configs.recommended,
     importsRules,
@@ -18,7 +21,6 @@ const config: Config[] = defineConfig(
                 ...globals.node,
             },
         },
-        ignores: ['storybook-static', 'dist', 'node_modules', 'lib', 'coverage'],
     }
 );
 
